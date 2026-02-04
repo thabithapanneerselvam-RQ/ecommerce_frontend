@@ -196,3 +196,14 @@
 .category-item:hover .category-icon img {
   transform: translateY(-4px);
 }
+
+.report-btn button{
+  width: 100%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  background: #f5f5f5;
+  padding: 9px 12px;
+  border-radius: 6px;
+  font-size: 16px;
+}

@@ -45,6 +45,10 @@ function Dashboard() {
 
               <span className="arrow">▾</span>
             </div> 
+
+            <div className="report-btn">
+              <button>See Report</button>
+            </div>
           </div>
             
 

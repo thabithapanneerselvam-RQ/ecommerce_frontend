@@ -72,7 +72,7 @@ function FlashSale() {
       name: "Classic Denim Jeans",
       price: 180000,
       originalPrice: 280000,
-      image: "https://images.unsplash.com/photo-1542272454315-7d53a2b8d6e9?w=400&h=400&fit=crop",
+      image: "https://images.unsplash.com/photo-1475178626620-a4d074967452?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTh8fGplYW5zfGVufDB8fDB8fHww",
       sold: 6,
       total: 10,
     },
@@ -205,6 +205,7 @@ function FlashSale() {
         </div>
       </div>
     </div>
+    
   );
 }
 
