@@ -28,8 +28,8 @@ function Login() {
         <div className="login-card">
 
           <div className="login-header">
-            <img src="/src/assets/shopIcon.svg" alt="GoMart" />
-            <h2>GoMart</h2>
+            <img src="/src/assets/shopIcon.svg" alt="GoShop" />
+            <h2>GoShop</h2>
           </div>
 
           <p className="subtitle">Welcome back, please login</p>
