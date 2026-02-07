@@ -4,6 +4,7 @@ import "../styles/FlashSale.css";
 import "./ProductList";
 import { type FlashSaleProduct } from "../data/Products";
 import axios from "axios";
+import Loader from "./common/Loader";
 
 interface FlashSaleProps {
   onLikeChange: (count: number) => void;
@@ -151,7 +152,7 @@ function FlashSale({ onLikeChange }: FlashSaleProps) {
 
         <div className="products-container">
            {loading ? (
-            <p className="loading">Loading products...</p>
+            <Loader />
           ) : (
           <div
             className="products-slider"

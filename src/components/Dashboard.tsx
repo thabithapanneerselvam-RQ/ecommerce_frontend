@@ -7,6 +7,9 @@ import { setSearch } from "../app/slice";
 import axios from "axios";
 import { type CategoryProduct } from "../data/Products";
 import useDebounce from "../hooks/useDebounce";
+import SearchInput from "./common/SearchInput";
+import Loader from "./common/Loader";
+import CategoryList from "./category/CategoryList";
 
 function Dashboard() {
   const [likeCount, setLikeCount] = useState(0);
@@ -56,12 +59,11 @@ function Dashboard() {
 
           <div className="search-btn">
             <img src="/src/assets/searchIcon.svg" alt="cart" />
-            <input
-              type="text"
+            <SearchInput
               placeholder="Search products..."
               value={search}
-              onChange={(e) => dispatch(setSearch(e.target.value))}
-            ></input>
+              onChange={(value) => dispatch(setSearch(value))}
+            />
           </div>
 
           <div className="right-nav">
@@ -105,21 +107,12 @@ function Dashboard() {
         </div>
       </div>
 
-      <div className="category-section">
-        {loading ? (
-          <p>Loading categories...</p>
-        ) : (
-          category.map((cat) => (
-            
-            <div key={cat.id} className="category-item">
-              <div className="category-icon">
-                <img src={cat.image} alt={cat.name} />
-              </div>
-              <p>{cat.name}</p>
-            </div>
-          ))
-        )}
-      </div>
+      <CategoryList
+        categories={category}
+        loading={loading}
+        onCategoryClick={(id) => console.log("Category clicked:", id)}
+      />
+
 
 
       <FlashSale onLikeChange={handleLike} />
