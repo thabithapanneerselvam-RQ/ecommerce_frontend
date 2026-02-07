@@ -125,7 +125,7 @@
 .products-slider{
   display: flex;
   gap:20px;
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.4s ease;
 }
 
 .product-card{
@@ -202,10 +202,12 @@
   box-shadow: 0 2px 8px rgba(0, 0, 0, 2.1);
 }
 
+.wishlist-btn.liked{
+  color:white;
+  background-color: red;
+}
 
 .wishlist-btn:hover{
-  background: #ff4757;
-  color: white;
   font-weight: 800;
   transform: scale(1.1);
   box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
@@ -359,5 +361,3 @@
     display: none;
   }
 } 
-
-

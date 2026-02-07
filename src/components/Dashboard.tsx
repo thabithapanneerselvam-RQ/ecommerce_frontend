@@ -1,17 +1,54 @@
-
+import { useState, useEffect } from "react";
 import "../styles/Dashboard.css";
 import FlashSale from "./FlashSale";
-
+import ProductList from "./ProductList";
+import { useAppSelector, useAppDispatch } from "../hooks/useStore";
+import { setSearch } from "../app/slice";
+import axios from "axios";
+import { type CategoryProduct } from "../data/Products";
+import useDebounce from "../hooks/useDebounce";
 
 function Dashboard() {
+  const [likeCount, setLikeCount] = useState(0);
+  const [category, setCategory] = useState<CategoryProduct[]>([]);
+  const [loading, setLoading] = useState(false);
 
+  const dispatch = useAppDispatch();
+  const search = useAppSelector((state) => state.product.search)
+  
+  const debounceSearch = useDebounce(search, 500);
+
+  const handleLike = (count: number) => {
+    setLikeCount(count);
+  };
+
+
+   useEffect(() => {
+      const fetchCategory = async () => {
+        setLoading(true);
+        try{
+          const res = await axios.get("https://api.escuelajs.co/api/v1/categories");
+          const data = await res.data;
+  
+          const mappedProducts: CategoryProduct[] = data.slice(0, 5).map((item: any) => ({
+            id: item.id,
+            name: item.name,
+            image:item.image
+          }))
+          setCategory(mappedProducts)
+        }catch(error){
+          console.error("Failed to fetch category", error);
+        }finally{
+          setLoading(false);
+        }
+      }
+      fetchCategory();
+    }, [])
 
   return (
-    
     <div className="dashboard-container">
       <div className="dashboard-header">
-        
-        <div className="dashboard-top"> 
+        <div className="dashboard-top">
           <div className="logo">
             <img src="/src/assets/logo.svg" alt="GoMart" />
             <h2>GoShop</h2>
@@ -19,7 +56,12 @@ function Dashboard() {
 
           <div className="search-btn">
             <img src="/src/assets/searchIcon.svg" alt="cart" />
-            <input type="text"></input>
+            <input
+              type="text"
+              placeholder="Search products..."
+              value={search}
+              onChange={(e) => dispatch(setSearch(e.target.value))}
+            ></input>
           </div>
 
           <div className="right-nav">
@@ -29,7 +71,8 @@ function Dashboard() {
 
             <div className="like-icon">
               <img src="/src/assets/likeIcon.png" alt="like" />
-            </div> 
+              <span>{likeCount}</span>
+            </div>
 
             <div className="profile">
               <img
@@ -44,93 +87,45 @@ function Dashboard() {
               </div>
 
               <span className="arrow">▾</span>
-            </div> 
+            </div>
 
             <div className="report-btn">
               <button>See Report</button>
             </div>
           </div>
-            
-
         </div>
 
-        
-          <div className="dashboard-hero">
-            <div className="hero-content">
-              <h1>
-                <span className="line-1">Simple</span>
-                <span className="line-2">is More</span>
-              </h1>
-            </div>
-
-
+        <div className="dashboard-hero">
+          <div className="hero-content">
+            <h1>
+              <span className="line-1">Simple</span>
+              <span className="line-2">is More</span>
+            </h1>
           </div>
+        </div>
       </div>
-      
+
       <div className="category-section">
-        <div className="category-item">
-          <div className="category-icon">
-            <img src="/src/assets/shopIcon.svg" alt="T-Shirt" />
-          </div>
-          <p>T-Shirt</p>
-        </div>
-
-        <div className="category-item">
-          <div className="category-icon">
-            <img src="/src/assets/shopIcon.svg" alt="Jacket" />
-          </div>
-          <p>Jacket</p>
-        </div>
-
-        <div className="category-item">
-          <div className="category-icon">
-            <img src="/src/assets/shopIcon.svg" alt="Shirt" />
-          </div>
-          <p>Shirt</p>
-        </div>
-
-        <div className="category-item">
-          <div className="category-icon">
-            <img src="/src/assets/shopIcon.svg" alt="Shoes" />
-          </div>
-          <p>Shoes</p>
-        </div>
-
-        <div className="category-item">
-          <div className="category-icon">
-            <img src="/src/assets/shopIcon.svg" alt="Jeans" />
-          </div>
-          <p>Jeans</p>
-        </div>
-
-        <div className="category-item">
-          <div className="category-icon">
-            <img src="/src/assets/shopIcon.svg" alt="bags" />
-          </div>
-          <p>Bags</p>
-        </div>
-
-        <div className="category-item">
-          <div className="category-icon">
-            <img src="/src/assets/shopIcon.svg" alt="Watches" />
-          </div>
-          <p>Watches</p>
-        </div>
-
-        <div className="category-item">
-          <div className="category-icon">
-            <img src="/src/assets/shopIcon.svg" alt="Cap" />
-          </div>
-          <p>Cap</p>
-        </div>
-
+        {loading ? (
+          <p>Loading categories...</p>
+        ) : (
+          category.map((cat) => (
+            
+            <div key={cat.id} className="category-item">
+              <div className="category-icon">
+                <img src={cat.image} alt={cat.name} />
+              </div>
+              <p>{cat.name}</p>
+            </div>
+          ))
+        )}
       </div>
 
 
-    <FlashSale />
+      <FlashSale onLikeChange={handleLike} />
+      <ProductList searchQuery={debounceSearch}/>
     </div>
-   
-  )
+  );
 }
 
-export default Dashboard
+export default Dashboard;

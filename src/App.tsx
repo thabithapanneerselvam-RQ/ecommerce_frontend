@@ -1,19 +1,21 @@
 import './App.css'
-import Login from "./components/Login"
+import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
-import Dashboard from "./components/Dashboard"
-import FlashSale from './components/FlashSale'
+
+
+const Login = lazy(() => import("./components/Login"));
+const Dashboard = lazy(() => import("./components/Dashboard"));
 
 function App() {
   
   return (
     <>
+    <Suspense fallback={<p>Page loading...</p>}>
       <Routes>
         <Route path="/" element={<Login />} />
         <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/flashsale" element={<FlashSale />} />
       </Routes>
-    
+    </Suspense>
     </>
   )
 }
