@@ -3,6 +3,7 @@ import { ChevronDown, ChevronUp } from "lucide-react";
 import "../styles/ProductList.css";
 import { colors, products } from "../data/Products";
 import { ITEMS_PER_PAGE } from "../constants/Products";
+import Card from "./common/Card";
 
 interface ProductSearchProps {
   searchQuery: string;
@@ -103,10 +104,8 @@ function ProductList({ searchQuery }: ProductSearchProps) {
 
   return (
     <>
+    <Card title="Today's For You!!!">
       <div className="list-container">
-        <div className="list-header">
-          <h1>Today's For You!!!</h1>
-        </div>
 
         <div className="list-body">
           <div className="filter-sidebar">
@@ -322,6 +321,7 @@ function ProductList({ searchQuery }: ProductSearchProps) {
           </div>
         </div>
       </div>
+      </Card>
     </>
   );
 }

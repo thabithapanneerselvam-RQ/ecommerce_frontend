@@ -10,6 +10,7 @@ import useDebounce from "../hooks/useDebounce";
 import SearchInput from "../components/common/SearchInput";
 import CategoryList from "../components/category/CategoryList";
 import SalesReport from "../components/report/SalesReport";
+import Card from "../components/common/Card";
 
 function Dashboard() {
   const [likeCount, setLikeCount] = useState(0);
@@ -99,6 +100,7 @@ function Dashboard() {
           </div>
         </div>
 
+      
         <div className="dashboard-hero">
           <div className="hero-content">
             <h1>

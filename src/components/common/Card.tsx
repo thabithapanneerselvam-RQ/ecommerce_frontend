@@ -1,4 +1,5 @@
 import React from "react";
+import "/home/thabitha/Documents/Frontend_training/ecommerce_FE_project/ecommerce/src/styles/Card.css"
 
 export type CardProps={
     title: string
@@ -8,7 +9,7 @@ export type CardProps={
 function Card({title, children}: CardProps){
     return(
         <div className="card">
-            <h2>{title}</h2>
+            <h2 className="card-title">{title}</h2>
             <div className="card-body">
                 {children}
             </div>
