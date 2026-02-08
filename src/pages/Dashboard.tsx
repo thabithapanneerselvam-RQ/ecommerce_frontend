@@ -1,20 +1,22 @@
 import { useState, useEffect } from "react";
 import "../styles/Dashboard.css";
-import FlashSale from "./FlashSale";
-import ProductList from "./ProductList";
+import FlashSale from "../components/FlashSale";
+import ProductList from "../components/ProductList";
 import { useAppSelector, useAppDispatch } from "../hooks/useStore";
 import { setSearch } from "../app/slice";
 import axios from "axios";
 import { type CategoryProduct } from "../data/Products";
 import useDebounce from "../hooks/useDebounce";
-import SearchInput from "./common/SearchInput";
-import Loader from "./common/Loader";
-import CategoryList from "./category/CategoryList";
+import SearchInput from "../components/common/SearchInput";
+import CategoryList from "../components/category/CategoryList";
+import SalesReport from "../components/report/SalesReport";
 
 function Dashboard() {
   const [likeCount, setLikeCount] = useState(0);
   const [category, setCategory] = useState<CategoryProduct[]>([]);
   const [loading, setLoading] = useState(false);
+
+  const [showReport, setShowReport] = useState(false);
 
   const dispatch = useAppDispatch();
   const search = useAppSelector((state) => state.product.search)
@@ -92,7 +94,7 @@ function Dashboard() {
             </div>
 
             <div className="report-btn">
-              <button>See Report</button>
+              <button onClick={() => setShowReport(true)}>See Report</button>
             </div>
           </div>
         </div>
@@ -114,9 +116,18 @@ function Dashboard() {
       />
 
 
+      {showReport ? (
+        <div className="sales-report">
+          <SalesReport onBack={() => setShowReport(false)}/>
+        </div>
+      ) : (
+        <>
+        <FlashSale onLikeChange={handleLike} />
+        <ProductList searchQuery={debounceSearch} />
+        </>
+      )}
 
-      <FlashSale onLikeChange={handleLike} />
-      <ProductList searchQuery={debounceSearch}/>
+
     </div>
   );
 }

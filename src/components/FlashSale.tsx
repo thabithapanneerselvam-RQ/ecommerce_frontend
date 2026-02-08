@@ -23,7 +23,6 @@ function FlashSale({ onLikeChange }: FlashSaleProps) {
   const [products, setProducts] = useState<FlashSaleProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-
   useEffect(() => {
     const fetchProducts = async () => {
       setLoading(true);
