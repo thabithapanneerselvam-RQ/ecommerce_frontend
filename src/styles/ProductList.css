@@ -349,6 +349,10 @@
   cursor: pointer;
 }
 
+.addToCart-btn.added{
+  color:white;
+  background-color: red;
+}
 
 .pagination {
   display: flex;

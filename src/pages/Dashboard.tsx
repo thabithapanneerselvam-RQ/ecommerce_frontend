@@ -10,10 +10,14 @@ import useDebounce from "../hooks/useDebounce";
 import SearchInput from "../components/common/SearchInput";
 import CategoryList from "../components/category/CategoryList";
 import SalesReport from "../components/report/SalesReport";
-import Card from "../components/common/Card";
+import { useNavigate } from "react-router-dom";
+
 
 function Dashboard() {
+  const navigate = useNavigate();
+
   const [likeCount, setLikeCount] = useState(0);
+  const [cartCount, setCartCount] = useState(0);
   const [category, setCategory] = useState<CategoryProduct[]>([]);
   const [loading, setLoading] = useState(false);
 
@@ -26,6 +30,10 @@ function Dashboard() {
 
   const handleLike = (count: number) => {
     setLikeCount(count);
+  };
+
+  const handleCart = (count: number) => {
+    setCartCount(count);
   };
 
 
@@ -70,8 +78,9 @@ function Dashboard() {
           </div>
 
           <div className="right-nav">
-            <div className="cart-icon">
+            <div className="cart-icon" onClick={() => navigate("/cart")}>
               <img src="/src/assets/shopIcon.svg" alt="cart" />
+               <span>{cartCount}</span>
             </div>
 
             <div className="like-icon">
@@ -125,7 +134,7 @@ function Dashboard() {
       ) : (
         <>
         <FlashSale onLikeChange={handleLike} />
-        <ProductList searchQuery={debounceSearch} />
+        <ProductList searchQuery={debounceSearch} onCartChange={handleCart}/>
         </>
       )}
 

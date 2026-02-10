@@ -93,7 +93,7 @@ function FlashSale({ onLikeChange }: FlashSaleProps) {
   };
 
   const getCardWidth = () => {
-    return 25;
+    return 35;
   };
 
   const handleLikeClick = (productId: number) => {
@@ -116,7 +116,7 @@ function FlashSale({ onLikeChange }: FlashSaleProps) {
           <div className="flash-sale-title">
             <div className="flash-icon">⚡</div>
             <h2>Flash Sale</h2>
-          </div>
+          </div> 
 
           <div className="countdown">
             <span className="countdown-label">End in</span>

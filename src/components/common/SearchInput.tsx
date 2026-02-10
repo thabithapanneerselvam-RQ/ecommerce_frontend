@@ -1,3 +1,6 @@
+import "/home/thabitha/Documents/Frontend_training/ecommerce_FE_project/ecommerce/src/styles/Dashboard.css";
+
+
 type SearchInputProps = {
     value: string;
     placeholder?: string;
@@ -7,12 +10,13 @@ type SearchInputProps = {
 
 function SearchInput({value, placeholder, onChange}: SearchInputProps) {
     return (
-        <input
+             <input
             type="text"
             placeholder={placeholder || "Search..."}
             value={value}
             onChange={(e) => onChange(e.target.value)}
         />
+       
     )
 }
 

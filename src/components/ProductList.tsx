@@ -1,15 +1,20 @@
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect, useContext} from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
 import "../styles/ProductList.css";
 import { colors, products } from "../data/Products";
 import { ITEMS_PER_PAGE } from "../constants/Products";
 import Card from "./common/Card";
+import { CartContext } from "../context/CartContext";
 
 interface ProductSearchProps {
   searchQuery: string;
 }
 
-function ProductList({ searchQuery }: ProductSearchProps) {
+interface AddToCartProps {
+  onCartChange: (count: number) => void;
+}
+
+function ProductList({ searchQuery, onCartChange }: ProductSearchProps & AddToCartProps) {
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 500000]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [showSortDropdown, setShowSortDropdown] = useState<boolean>(false);
@@ -19,6 +24,26 @@ function ProductList({ searchQuery }: ProductSearchProps) {
     color: false,
   });
   const [currentPage, setCurrentPage] = useState<number>(1);
+
+  const context = useContext(CartContext);
+  if(!context){
+    throw new Error("product list should be inside context")
+  }
+  const { addToCart, removeFromCart, cartItems } = context;
+
+  const handleCartClick = (product: any) => {
+    const exists = cartItems.some((item) => item.id === product.id);
+
+    if (exists) {
+      removeFromCart(product.id);
+    } else {
+      addToCart(product);
+    }
+
+    onCartChange(
+      exists ? cartItems.length - 1 : cartItems.length + 1
+    );
+  };
 
   const filteredAndSortedProducts = useMemo(() => {
     let result = [...products];
@@ -98,7 +123,7 @@ function ProductList({ searchQuery }: ProductSearchProps) {
     return `RS ${price.toFixed(2)}`;
   };
 
-  useMemo(() => {
+  useEffect(() => {
     setCurrentPage(1);
   }, [searchQuery]);
 
@@ -277,7 +302,14 @@ function ProductList({ searchQuery }: ProductSearchProps) {
                       </div>
 
                       <div className="addToCart">
-                        <button className="addToCart-btn">Add to Cart</button>
+                        <button 
+                        onClick={() => {handleCartClick(product)}} 
+                        className={`addToCart-btn ${
+                          cartItems.some((item)=> item.id === product.id) ? "added" : "not-added"
+                        }`}>
+                          Add to Cart
+                        </button>
+                       
                       </div>
                     </div>
                   </div>

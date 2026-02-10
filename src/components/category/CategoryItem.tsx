@@ -1,3 +1,5 @@
+import "/home/thabitha/Documents/Frontend_training/ecommerce_FE_project/ecommerce/src/styles/Dashboard.css";
+
 type CategoryItemProps = {
   id: number;
   name: string;

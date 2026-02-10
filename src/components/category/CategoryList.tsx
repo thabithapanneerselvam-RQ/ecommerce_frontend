@@ -1,6 +1,7 @@
 import type { CategoryProduct } from "../../data/Products";
 import CategoryItem from "./CategoryItem";
 import Loader from "../common/Loader";
+import "/home/thabitha/Documents/Frontend_training/ecommerce_FE_project/ecommerce/src/styles/Dashboard.css";
 
 type CategoryListProps = {
   categories: CategoryProduct[];
