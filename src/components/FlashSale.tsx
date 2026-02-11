@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import "../styles/FlashSale.css";
+import "../styles/FlashSale.scss";
 import "./ProductList";
 import { type FlashSaleProduct } from "../data/Products";
 import axios from "axios";

@@ -1,5 +1,5 @@
 import React from "react";
-import "/home/thabitha/Documents/Frontend_training/ecommerce_FE_project/ecommerce/src/styles/Card.css"
+import "/home/thabitha/Documents/Frontend_training/ecommerce_FE_project/ecommerce/src/styles/Card.scss"
 
 export type CardProps={
     title: string

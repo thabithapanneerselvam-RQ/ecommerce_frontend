@@ -2,10 +2,10 @@ import { useContext, useEffect, useState } from "react";
 import { CartContext} from "../context/CartContext";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
-import "../styles/AddToCart.css"
+import "../styles/AddToCart.scss"
 
 function AddToCart() {
-    const [quantity, setQuantity] = useState(0);
+    const [quantity, setQuantity] = useState(1);
 
     const context = useContext(CartContext);
     if(!context){

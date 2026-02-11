@@ -1,7 +1,7 @@
 import { useState } from "react"
 import { useNavigate } from "react-router-dom"
 import { Eye, EyeOff } from "lucide-react" 
-import "../styles/Login.css"
+import "../styles/Login.scss"
 import { loginValidation } from "../schema/LoginValidation"
 import { useFormik } from "formik"
 

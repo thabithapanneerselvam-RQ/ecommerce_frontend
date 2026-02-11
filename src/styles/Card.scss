@@ -1,0 +1,16 @@
+@use "./variables.scss" as *;
+
+.card {
+  padding: 20px;
+  margin-bottom: 25px;
+  font-size: $font-size-xl;
+  font-weight: $font-weight-semibold;
+}
+
+.card-title{
+  padding-left: 20px;
+}
+
+.card-body {
+  width: $width-full;
+}

@@ -1,0 +1,67 @@
+$black: #333;
+$white: #ffffff;
+$brown: #555;
+$border-color: #e5e5e5;
+$primary: #00bcd4;
+$alice-blue: aliceblue;
+
+$text-primary: #1a1a1a;
+$text-secondary: #666;
+$text-muted: #999;
+$error: #ff4444;
+$orange: #ff7a00;
+$bg-light: #f9f9f9;
+$bg-gray: #f5f5f5;
+$shadow-light: rgba(0, 0, 0, 0.1);
+$shadow-medium: rgba(0, 0, 0, 0.15);
+$shadow-dark: rgba(0, 0, 0, 0.5);
+$shadow-login: rgba(255, 122, 0, 0.15);
+$shadow-brown: rgba(255, 71, 87, 0.25);
+$wishlist-btn: rgba(255, 255, 255, 0.95);
+
+$orange-focus-shadow: 0 0 0 2px rgba(255, 122, 0, 0.15);
+
+$font-size-xs: 12px;
+$font-size-sm: 13px;
+$font-size-base: 14px;
+$font-size-md: 16px;
+$font-size-lg: 18px;
+$font-size-xl: 20px;
+$font-size-xxl: 30px;
+$font-size-xxxl: 60px;
+
+$font-weight-normal: 400;
+$font-weight-medium: 500;
+$font-weight-semibold: 600;
+$font-weight-bold: 700;
+
+$line-height-tight: 1.4;
+
+$radius-circle: 50%;
+
+$width-half: 50%;
+$width-full: 100%;
+
+$height-full: 100%;
+$height-half: 50%;
+
+$transition-fast: 0.2s;
+$transition-base: 0.3s;
+
+$breakpoint-xs: 480px;
+$breakpoint-sm: 768px;
+$breakpoint-lg: 1200px;
+
+$breakpoint-md: 750px;
+$breakpoint-xl: 950px;
+$breakpoint-base: 600px;
+
+$breakpoint-tablet: 700px;
+$breakpoint-desktop: 1024px;
+$breakpoint-mobile-lg: 480px;
+
+$box-shadow-sm: 0 2px 4px $shadow-light;
+$box-shadow-md: 0 4px 12px $shadow-light;
+$box-shadow-lg: 0 4px 12px $shadow-dark;
+$box-shadow-card: 0 2px 8px $shadow-medium;
+

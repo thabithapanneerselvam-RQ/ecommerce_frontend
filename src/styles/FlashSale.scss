@@ -1,7 +1,9 @@
+@use "./variables.scss" as *;
+
 .flash-sale-container {
-  width: 100%;
+  width: $width-full;
   padding: 40px 20px;
-  background-color: aliceblue;
+  background-color: $alice-blue;
   margin-top: 10px;
 }
 
@@ -17,25 +19,25 @@
   display: flex;
   align-items: center;
   gap: 12px;
+
+  h2 {
+    font-size: 28px;
+    font-weight: $font-weight-bold;
+    margin: 0;
+    color: $text-primary;
+  }
 }
 
 .flash-icon {
   width: 50px;
   height: 50px;
   background: linear-gradient(135deg, #e6e3e3 0%, #2d2d2d 100%);
-  border-radius: 50%;
+  border-radius: $radius-circle;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 30px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.flash-sale-title h2 {
-  font-size: 28px;
-  font-weight: 700;
-  margin: 0;
-  color: #1a1a1a;
+  font-size: $font-size-xxl;
+  box-shadow: $box-shadow-md;
 }
 
 .countdown {
@@ -45,9 +47,9 @@
 }
 
 .countdown-label {
-  font-size: 16px;
-  color: #666;
-  font-weight: 500;
+  font-size: $font-size-md;
+  color: $text-secondary;
+  font-weight: $font-weight-medium;
 }
 
 .countdown-time {
@@ -56,122 +58,117 @@
   gap: 6px;
 }
 
-
 .time-box {
-  background: #ff4757;
-  color: white;
+  background: $error;
+  color: $white;
   padding: 8px 12px;
   border-radius: 6px;
-  font-weight: 700;
-  font-size: 18px;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
   min-width: 45px;
   text-align: center;
-  box-shadow: 0 2px 8px rgba(255, 71, 87, 0.25);
+  box-shadow: 0 2px 8px $shadow-brown;
 }
 
 .separator {
-  color: #ff4757;
-  font-weight: 700;
-  font-size: 18px;
+  color: $error;
+  font-weight: $font-weight-bold;
+  font-size: $font-size-lg;
   margin: 0 2px;
 }
 
-.navigation-buttons{
+.navigation-buttons {
   display: flex;
   margin-left: auto;
   margin-right: 40px;
   gap: 10px;
 }
 
-.nav-btn{
+.nav-btn {
   width: 60px;
   height: 40px;
-  border: 2px solid #e0e0e0;
-  background: #ffffff;
+  border: 2px solid $border-color;
+  background: $white;
   border-radius: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  transition: all 0.3s ease;
-  color:#333;
+  transition: all $transition-base ease;
+  color: $black;
   margin-right: 10px;
 
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
+
+  &:hover:not(:disabled) {
+    background: $text-primary;
+    border-color: $text-primary;
+    color: $white;
+    transform: translateY(-2px);
+    box-shadow: $box-shadow-md;
+  }
+
+  &:active:not(:disabled) {
+    transform: translateY(0px);
+  }
 }
 
-.nav-btn:disabled{
-  opacity: 0.3;
-  cursor: not-allowed;
-}
-
-.nav-btn:hover:not(:disabled){
-  background: #1a1a1a;
-  border-color: #1a1a1a;
-  color: white;
-  transform: translateY(-2px);
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-}
-
-.nav-btn:active:not(:disabled){
-  transform: translateY(0px);
-}
-
-.products-container{
+.products-container {
   overflow: hidden;
   position: relative;
   margin-right: 40px;
 }
 
-.products-slider{
+.products-slider {
   display: flex;
-  gap:20px;
+  gap: 20px;
   transition: transform 0.4s ease;
 }
 
-.product-card{
+.product-card {
   min-width: calc(25% - 15px);
   flex-shrink: 1;
-  background: #ffffff;
+  background: $white;
   border-radius: 12px;
   overflow: hidden;
   box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
-  transition: all 0.3s ease;
+  transition: all $transition-base ease;
   cursor: pointer;
-}
 
-.product-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
-}
+  &:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 24px $shadow-medium;
 
+    .product-image img {
+      transform: scale(1.1);
+    }
+  }
+}
 
 .product-image {
   position: relative;
-  width: 100%;
+  width: $width-full;
   height: 240px;
-  background: #f5f5f5;
+  background: $bg-gray;
   overflow: hidden;
+
+  img {
+    width: $width-full;
+    height: $height-full;
+    object-fit: cover;
+    transition: transform 0.4s ease;
+  }
 }
-
-
-.product-image img {
-  width: 100%;
-  height: 100%;
-  object-fit:cover;
-  transition: transform 0.4s ease;
-}
-
-.product-card:hover .product-image img {
-  transform: scale(1.1);
-}
-
 
 .product-name {
   font-size: 15px;
-  font-weight: 600;
-  color: #1a1a1a;
+  font-weight: $font-weight-semibold;
+  color: $text-primary;
   margin: 0 0 12px 0px;
-  line-height: 1.4;
+  line-height: $line-height-tight;
   height: 42px;
   overflow: hidden;
 }
@@ -189,113 +186,110 @@
   right: 12px;
   width: 40px;
   height: 40px;
-  background: rgba(255, 255, 255, 0.95);
+  background: $wishlist-btn;
   border: none;
-  border-radius: 50%;
-  font-size: 20px;
+  border-radius: $radius-circle;
+  font-size: $font-size-xl;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
   z-index: 2;
   transition: all 0.5s ease;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 2.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+
+  &.liked {
+    color: $white;
+    background-color: $error;
+  }
+
+  &:hover {
+    font-weight: 800;
+    transform: scale(1.1);
+    box-shadow: 0 4px 12px $shadow-brown;
+  }
 }
 
-.wishlist-btn.liked{
-  color:white;
-  background-color: red;
-}
-
-.wishlist-btn:hover{
-  font-weight: 800;
-  transform: scale(1.1);
-  box-shadow: 0 4px 12px rgba(255, 71, 87, 0.3);
-}
-
-.product-info{
+.product-info {
   padding: 15px;
 }
 
 .current-price {
-  font-size: 18px;
-  font-weight: 700;
-  color: #1a1a1a;
+  font-size: $font-size-lg;
+  font-weight: $font-weight-bold;
+  color: $text-primary;
 }
 
 .original-price {
-  font-size: 14px;
-  color: #999;
+  font-size: $font-size-base;
+  color: $text-muted;
   text-decoration: line-through;
 }
 
-.product-progress{
+.product-progress {
   display: flex;
   flex-direction: row;
   align-items: center;
   gap: 20px;
 }
 
-.progress-bar{
+.progress-bar {
   width: 70%;
   height: 5px;
-  background: #e8e8e8;
+  background: $border-color;
   border-radius: 10px;
   position: relative;
   overflow: hidden;
 }
 
-.progress-fill{
-  height: 100%;
+.progress-fill {
+  height: $height-full;
   background: linear-gradient(90deg, #ff4757 0%, #ff6b7a 100%);
   border-radius: 10px;
   transition: width 0.4s ease;
   position: relative;
 
+  &::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+    animation: shimmer 1.5s infinite;
+  }
 }
 
 .progress-text {
   font-size: 15px;
-  color: #666;
-  font-weight: 500;
+  color: $text-secondary;
+  font-weight: $font-weight-medium;
   display: flex;
   align-items: center;
   justify-content: center;
 }
 
-
-.progress-fill::after{
-  content:"";
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  bottom: 0;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
-  animation: shimmer 1.5s infinite;
-}
-
-@keyframes shimmer{
-  0%{
+@keyframes shimmer {
+  0% {
     transform: translateX(-100%);
   }
-  100%{
+  100% {
     transform: translateX(100%);
   }
 }
 
-
-@media (max-width: 1200px) {
+@media (max-width: $breakpoint-lg) {
   .product-card {
     min-width: calc(33% - 14px);
   }
-  
+
   .flash-sale-container {
     padding: 30px 40px;
   }
 }
 
-@media (max-width: 950px) {
+@media (max-width: $breakpoint-xl) {
   .flash-sale-container {
     padding: 30px 20px;
   }
@@ -306,7 +300,7 @@
 
   .countdown {
     order: 3;
-    width: 100%;
+    width: $width-full;
     justify-content: center;
     margin-top: 15px;
   }
@@ -318,43 +312,46 @@
   .product-card {
     min-width: calc(50% - 10px);
   }
-  
-  .flash-sale-title h2 {
-    font-size: 24px;
+
+  .flash-sale-title {
+    h2 {
+      font-size: $font-size-xl;
+    }
   }
 }
 
-@media (max-width: 600px) {
+@media (max-width: $breakpoint-base) {
   .flash-sale-container {
     padding: 20px 15px;
   }
 
-  .flash-sale-title h2 {
-    font-size: 22px;
+  .flash-sale-title {
+    h2 {
+      font-size: $font-size-xl;
+    }
   }
 
   .flash-icon {
     width: 36px;
     height: 36px;
-    font-size: 20px;
+    font-size: $font-size-xl;
   }
 
   .time-box {
     padding: 6px 10px;
-    font-size: 16px;
+    font-size: $font-size-md;
     min-width: 40px;
   }
 
   .countdown-label {
-    font-size: 14px;
+    font-size: $font-size-base;
   }
 
   .product-card {
-    min-width: 100%;
+    min-width: $width-full;
   }
 
   .product-image {
     height: 200px;
   }
-
-} 
+}

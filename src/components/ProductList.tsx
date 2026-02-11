@@ -1,6 +1,6 @@
 import { useState, useMemo, useEffect, useContext} from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import "../styles/ProductList.css";
+import "../styles/ProductList.scss";
 import { colors, products } from "../data/Products";
 import { ITEMS_PER_PAGE } from "../constants/Products";
 import Card from "./common/Card";

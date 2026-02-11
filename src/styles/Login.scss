@@ -1,5 +1,7 @@
+@use "./variables.scss" as *;
+
 .login-container{
-  width: 100%;
+  width: $width-full;
   height: 100vh;
   display: flex;
 }
@@ -11,15 +13,15 @@
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
-  background-color: #eef2f0;
+  background-color: $white;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
 .login-right {
-  width: 50%;
-  background-color: #ffffff;
+  width: $width-half;
+  background-color: $white;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -27,23 +29,21 @@
 
 
 .login-card {
-  /* width: 450px;
-  padding: 50px; */
   border-radius: 14px;
-  background-color: #ffffff;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  background-color: $white;
+  box-shadow: 0 8px 25px $shadow-medium;
   text-align: center;
-  width: 100%;
+  width: $width-full;
   max-width: 420px;
   padding: 32px 24px;
   margin: 16px;
 }
 
 .login-card input {
-  width: 100%;
+  width: $width-full;
   padding: 14px 14px;
-  font-size: 15px;
-  border: 1px solid #ccc;
+  font-size: $font-size-base;
+  border: 1px solid $border-color;
   border-radius: 6px;
   outline: none;
   transition: border-color 0s, box-shadow 0.2s;
@@ -55,27 +55,27 @@
 }
 
 .login-card input:focus {
-  border-color: #ff7a00;
-  box-shadow: 0 0 0 2px rgba(255, 122, 0, 0.15);
+  border-color: $orange;
+  box-shadow: 0 0 0 2px $shadow-login;
 }
 
 .login-card button {
-  width: 100%;
+  width: $width-full;
   padding: 14px;
   margin-top: 30px;
   border: none;
   border-radius: 6px;
-  background-color: #ff7a00;
-  color: white;
+  background-color: $orange;
+  color: $white;
   cursor: pointer;
-  font-size: 16px;
+  font-size: $font-size-md;
   font-weight: bold;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 10px $shadow-dark;
 }
 
 .error {
-  color: red;
-  font-size: 14px;
+  color: $error;
+  font-size: $font-size-base;
   margin-top: 10px;
   display: block;
 }
@@ -97,8 +97,8 @@
 }
 
 .subtitle {
-  font-size: 16px;
-  color: #777;
+  font-size: $font-size-md;
+  color: $text-secondary;
   margin: 10px 0 25px;
 }
 
@@ -114,11 +114,11 @@
 }
 
 .social-login button{
-  background-color: #ffffff;
-  color: black;
+  background-color: $white;
+  color: $black;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
-  font-size: 16px;
+  font-size: $font-size-md;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -133,14 +133,14 @@
 .divider{
   margin: 30px 0;
   text-align: center;
-  font-size: 16px;
-  color: #999;
+  font-size: $font-size-md;
+  color: $text-muted;
   position: relative;
 }
 
 
 .divider span {
-  background: #fff;
+  background: $white;
   padding: 0 12px;
   position: relative;
   z-index: 1;
@@ -149,9 +149,9 @@
 
 .divider::before, .divider::after{
   content:"";
-  width: 50%;
+  width: $width-half;
   height: 1px;
-  background: #ddd;
+  background: $text-muted;
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
@@ -161,9 +161,9 @@
 .divider::after { right: 0; }
 
 .forgot{
-  font-size: 14px;
+  font-size: $font-size-base;
   text-align: right;
-  color: #ff7a00;
+  color: $orange;
   cursor: pointer;
   margin: 10px;
 }
@@ -178,37 +178,37 @@
   top: 50%;
   right: 14px;
   cursor: pointer;
-  font-size: 18px;
+  font-size: $font-size-lg;
   transform: translateY(-50%);
-  color: #999;
+  color: $text-muted;
 }
 
-@media (max-width: 750px){
+@media (max-width: $breakpoint-md){
   .login-left {
     display: none;
   }
   .login-right {
-    width: 100%;
+    width: $width-full;
   }
 }
 
 
 
-@media (max-width: 950px) {
+@media (max-width: $breakpoint-xl) {
   .login-card {
     padding: 24px 20px;
   }
 
   .login-header h2 {
-    font-size: 20px;
+    font-size: $font-size-xl;
   }
 
   .subtitle {
-    font-size: 14px;
+    font-size: $font-size-base;
   }
 
   .forgot {
-    font-size: 13px;
+    font-size: $font-size-sm;
   }
 
   .social-login{
@@ -216,8 +216,8 @@
   }
 
   .social-login button{
-    width: 100%;
-    font-size: 14px;
+    width: $width-full;
+    font-size: $font-size-base;
     padding: 14px 14px;
   }
 

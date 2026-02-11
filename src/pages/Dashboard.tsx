@@ -1,5 +1,5 @@
-import { useState, useEffect } from "react";
-import "../styles/Dashboard.css";
+import { useState } from "react";
+import "../styles/Dashboard.scss";
 import FlashSale from "../components/FlashSale";
 import ProductList from "../components/ProductList";
 import { useAppSelector, useAppDispatch } from "../hooks/useStore";
@@ -11,6 +11,22 @@ import SearchInput from "../components/common/SearchInput";
 import CategoryList from "../components/category/CategoryList";
 import SalesReport from "../components/report/SalesReport";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
+
+
+const fetchCategories = async (): Promise<CategoryProduct[]> => {
+  const res = await axios.get("https://api.escuelajs.co/api/v1/categories");
+
+  if (res.status !== 200) {
+    throw new Error("API failed");
+  }
+  
+  return res.data.slice(0, 5).map((item: any) => ({
+    id: item.id,
+    name: item.name,
+    image: item.image,
+  }));
+};
 
 
 function Dashboard() {
@@ -18,8 +34,14 @@ function Dashboard() {
 
   const [likeCount, setLikeCount] = useState(0);
   const [cartCount, setCartCount] = useState(0);
-  const [category, setCategory] = useState<CategoryProduct[]>([]);
-  const [loading, setLoading] = useState(false);
+  const { data: category = [], isLoading: loading, isError: error } = useQuery({
+    queryKey: ["categories"],
+    queryFn: fetchCategories,
+  });
+
+  if (error) {
+    return <p>Failed to load categories</p>;
+  }
 
   const [showReport, setShowReport] = useState(false);
 
@@ -35,29 +57,6 @@ function Dashboard() {
   const handleCart = (count: number) => {
     setCartCount(count);
   };
-
-
-   useEffect(() => {
-      const fetchCategory = async () => {
-        setLoading(true);
-        try{
-          const res = await axios.get("https://api.escuelajs.co/api/v1/categories");
-          const data = await res.data;
-  
-          const mappedProducts: CategoryProduct[] = data.slice(0, 5).map((item: any) => ({
-            id: item.id,
-            name: item.name,
-            image:item.image
-          }))
-          setCategory(mappedProducts)
-        }catch(error){
-          console.error("Failed to fetch category", error);
-        }finally{
-          setLoading(false);
-        }
-      }
-      fetchCategory();
-    }, [])
 
   return (
     <div className="dashboard-container">
