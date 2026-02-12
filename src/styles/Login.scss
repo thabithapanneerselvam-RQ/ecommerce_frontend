@@ -1,4 +1,5 @@
 @use "./variables.scss" as *;
+@use "./mixins.scss" as *;
 
 .login-container{
   width: $width-full;
@@ -14,17 +15,13 @@
   background-position: center;
   background-size: cover;
   background-color: $white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+  @include flex-center;
 }
 
 .login-right {
   width: $width-half;
   background-color: $white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+   @include flex-center;
 }
 
 
@@ -81,9 +78,7 @@
 }
 
 .login-header{
-  display: flex;
-  align-items: center;
-  justify-content: center;
+   @include flex-center;
   gap: 10px;
 }
 
@@ -119,9 +114,7 @@
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   border-radius: 6px;
   font-size: $font-size-md;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+   @include flex-center;
   flex: 1;
   cursor: pointer;
   padding: 0 14px;
@@ -170,18 +163,26 @@
 
 .password-field{
   position: relative;
+
+  input {
+    width: 100%;
+    padding-right: 10%;
+  }
+
+  span {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    right: 14px;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: $font-size-lg;
+    color: $text-muted;
+  }
 }
 
 
-.password-field span{
-  position: absolute;
-  top: 50%;
-  right: 14px;
-  cursor: pointer;
-  font-size: $font-size-lg;
-  transform: translateY(-50%);
-  color: $text-muted;
-}
 
 @media (max-width: $breakpoint-md){
   .login-left {

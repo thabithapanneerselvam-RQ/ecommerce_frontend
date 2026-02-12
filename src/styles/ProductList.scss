@@ -1,4 +1,5 @@
 @use "./variables.scss" as *;
+@use "./mixins.scss" as *;
 
 .list-container {
   max-width: $width-full;
@@ -167,9 +168,7 @@
   cursor: pointer;
   transition: all 0.3s;
   position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+   @include flex-center;
 }
 
 .color-btn:hover {

@@ -1,4 +1,5 @@
 @use "./variables.scss" as *;
+@use "./mixins.scss" as *;
 
 .flash-sale-container {
   width: $width-full;
@@ -33,9 +34,7 @@
   height: 50px;
   background: linear-gradient(135deg, #e6e3e3 0%, #2d2d2d 100%);
   border-radius: $radius-circle;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   font-size: $font-size-xxl;
   box-shadow: $box-shadow-md;
 }
@@ -90,9 +89,7 @@
   border: 2px solid $border-color;
   background: $white;
   border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   cursor: pointer;
   transition: all $transition-base ease;
   color: $black;
@@ -190,9 +187,7 @@
   border: none;
   border-radius: $radius-circle;
   font-size: $font-size-xl;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
   cursor: pointer;
   z-index: 2;
   transition: all 0.5s ease;
@@ -265,9 +260,7 @@
   font-size: 15px;
   color: $text-secondary;
   font-weight: $font-weight-medium;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  @include flex-center;
 }
 
 @keyframes shimmer {
