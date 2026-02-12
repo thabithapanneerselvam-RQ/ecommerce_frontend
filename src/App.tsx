@@ -2,6 +2,7 @@ import './App.css'
 import { lazy, Suspense } from 'react'
 import { Routes, Route } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import ProtectedRoute from './routes/PrivateRoute';
 
 const queryClient = new QueryClient();
 
@@ -17,9 +18,13 @@ function App() {
     <Suspense fallback={<p>Page loading...</p>}>
       <Routes>
         <Route path="/" element={<Login />} />
-        <Route path="/dashboard" element={<Dashboard />} />
-        <Route path="/cart" element={<AddToCart />} />
+
+        <Route element={<ProtectedRoute />}>
+          <Route path="/dashboard" element={<Dashboard />} />
+          <Route path="/cart" element={<AddToCart />} />
+        </Route>
       </Routes>
+
     </Suspense>
     </QueryClientProvider>
     </>

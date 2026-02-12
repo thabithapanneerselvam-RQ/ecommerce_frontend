@@ -19,6 +19,7 @@ function Login() {
     validationSchema: loginValidation,
     onSubmit: (values) => {
       if(values.username === "admin" && values.password === "1234"){
+        localStorage.setItem("token", "12345")
         navigate("/dashboard")
       }else{
         setError("Invalid username or password")
