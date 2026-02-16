@@ -1,8 +1,8 @@
 import { useContext, useEffect, useState } from "react";
-import { CartContext} from "../context/CartContext";
+import { CartContext} from "../../context/CartContext";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
-import "../styles/AddToCart.scss"
+import "../shared/styles/AddToCart.scss"
 
 function AddToCart() {
     const [quantity, setQuantity] = useState(1);

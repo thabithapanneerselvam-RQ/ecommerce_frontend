@@ -1,4 +1,4 @@
-import "/home/thabitha/Documents/Frontend_training/ecommerce_FE_project/ecommerce/src/styles/Dashboard.scss";
+import "/home/thabitha/Documents/Frontend_training/ecommerce_FE_project/ecommerce/src/shared/styles/Dashboard.scss";
 
 type CategoryItemProps = {
   id: number;

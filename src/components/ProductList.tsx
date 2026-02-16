@@ -1,20 +1,17 @@
 import { useState, useMemo, useEffect, useContext} from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import "../styles/ProductList.scss";
+import "../shared/styles/ProductList.scss";
 import { colors, products } from "../data/Products";
-import { ITEMS_PER_PAGE } from "../constants/Products";
-import Card from "./common/Card";
+import { ITEMS_PER_PAGE } from "../shared/constants/Products";
+import Card from "../shared/common/Card";
 import { CartContext } from "../context/CartContext";
 
-interface ProductSearchProps {
+interface ProductListProps {
   searchQuery: string;
-}
-
-interface AddToCartProps {
   onCartChange: (count: number) => void;
 }
 
-function ProductList({ searchQuery, onCartChange }: ProductSearchProps & AddToCartProps) {
+function ProductList({ searchQuery, onCartChange }: ProductListProps) {  //use arrow function
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 500000]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [showSortDropdown, setShowSortDropdown] = useState<boolean>(false);
@@ -27,7 +24,7 @@ function ProductList({ searchQuery, onCartChange }: ProductSearchProps & AddToCa
 
   const context = useContext(CartContext);
   if(!context){
-    throw new Error("product list should be inside context")
+    throw new Error("product list should be inside context") //remove this line
   }
   const { addToCart, removeFromCart, cartItems } = context;
 
@@ -128,7 +125,6 @@ function ProductList({ searchQuery, onCartChange }: ProductSearchProps & AddToCa
   }, [searchQuery]);
 
   return (
-    <>
     <Card title="Today's For You!!!">
       <div className="list-container">
 
@@ -354,7 +350,6 @@ function ProductList({ searchQuery, onCartChange }: ProductSearchProps & AddToCa
         </div>
       </div>
       </Card>
-    </>
   );
 }
 

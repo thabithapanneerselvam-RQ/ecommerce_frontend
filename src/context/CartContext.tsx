@@ -1,5 +1,5 @@
 import { createContext } from "react";
-import { cartLogic, type CartContextType } from "../services/ContextService";
+import { cartLogic, type CartContextType } from "../services/contextService";
 
 export const CartContext = createContext<CartContextType | null>(null);
 

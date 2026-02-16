@@ -1,32 +1,16 @@
 import { useState } from "react";
-import "../styles/Dashboard.scss";
-import FlashSale from "../components/FlashSale";
-import ProductList from "../components/ProductList";
-import { useAppSelector, useAppDispatch } from "../hooks/useStore";
-import { setSearch } from "../app/slice";
-import axios from "axios";
-import { type CategoryProduct } from "../data/Products";
-import useDebounce from "../hooks/useDebounce";
-import SearchInput from "../components/common/SearchInput";
-import CategoryList from "../components/category/CategoryList";
-import SalesReport from "../components/report/SalesReport";
+import "../shared/styles/Dashboard.scss";
+import FlashSale from "../../components/FlashSale";
+import ProductList from "../../components/ProductList";
+import { useAppSelector, useAppDispatch } from "../../shared/hooks/useStore";
+import { setSearch } from "../../app/slice";
+import useDebounce from "../../shared/hooks/useDebounce";
+import SearchInput from "../../shared/common/SearchInput";
+import CategoryList from "../../components/category/CategoryList";
+import SalesReport from "../../components/report/SalesReport";
 import { useNavigate } from "react-router-dom";
 import { useQuery } from "@tanstack/react-query";
-
-
-const fetchCategories = async (): Promise<CategoryProduct[]> => {
-  const res = await axios.get("https://api.escuelajs.co/api/v1/categories");
-
-  if (res.status !== 200) {
-    throw new Error("API failed");
-  }
-  
-  return res.data.slice(0, 5).map((item: any) => ({
-    id: item.id,
-    name: item.name,
-    image: item.image,
-  }));
-};
+import { fetchCategories } from "../../services/categoryService";
 
 
 function Dashboard() {
@@ -35,9 +19,10 @@ function Dashboard() {
   const [likeCount, setLikeCount] = useState(0);
   const [cartCount, setCartCount] = useState(0);
   const { data: category = [], isLoading: loading, isError: error } = useQuery({
-    queryKey: ["categories"],
+    queryKey: ["categories"], 
     queryFn: fetchCategories,
   });
+
 
   if (error) {
     return <p>Failed to load categories</p>;

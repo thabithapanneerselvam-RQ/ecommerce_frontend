@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import "../styles/FlashSale.scss";
+import "../shared/styles/FlashSale.scss";
 import "./ProductList";
 import { type FlashSaleProduct } from "../data/Products";
 import axios from "axios";
-import Loader from "./common/Loader";
+import Loader from "../shared/common/Loader";
 
 interface FlashSaleProps {
   onLikeChange: (count: number) => void;
@@ -23,14 +23,16 @@ function FlashSale({ onLikeChange }: FlashSaleProps) {
   const [products, setProducts] = useState<FlashSaleProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
-  useEffect(() => {
+  // have fetch products somewhere and import it here 
+
+  useEffect(() => { 
     const fetchProducts = async () => {
       setLoading(true);
       try {
         const res = await axios.get("https://fakestoreapi.com/products");
         const data = await res.data;
 
-        const mappedProducts: FlashSaleProduct[] = data.map((item: any) => ({
+        const mappedProducts = data.map((item: any) => ({
           id: item.id,
           name: item.title,
           price: item.price * 1000, 
