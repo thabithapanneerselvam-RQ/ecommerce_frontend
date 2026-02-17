@@ -63,7 +63,7 @@ function Dashboard() {
 
           <div className="right-nav">
             <div className="cart-icon" onClick={() => navigate("/cart")}>
-              <img src="/src/assets/shopIcon.svg" alt="cart" />
+              <img src="/shopIcon.svg" alt="cart" />
                <span>{cartCount}</span>
             </div>
 

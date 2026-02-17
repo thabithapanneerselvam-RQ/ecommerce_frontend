@@ -18,9 +18,12 @@ function Login() {
       localStorage.setItem("token", data.token);
       navigate("/dashboard");
     },
+    onError: ()=>{
+      return ("invalid username or pass")
+    }
   });
 
-  const formik = useFormik({ // use new User()
+  const formik = useFormik({ 
     initialValues: {
       username: "",
       password: "",
@@ -85,7 +88,9 @@ function Login() {
             </button>
 
             {mutation.isError && (
-              <span className="error">{mutation.error?.message}</span>
+              <span 
+              data-testid="error-id"
+              className="error">{mutation.error.message}</span>
             )}
           </form>
           <div className="divider">

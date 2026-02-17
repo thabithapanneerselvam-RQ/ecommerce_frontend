@@ -1,4 +1,6 @@
-@use "./variables.scss" as *;
+@use "../../shared/styles/variables" as *;
+@use "../../shared/styles/mixins.scss" as *;
+
 
 .add-to-cart-container{
   display: flex;

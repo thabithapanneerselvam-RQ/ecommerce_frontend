@@ -38,7 +38,7 @@ function AddToCart() {
     }
 
     useEffect(()=>{
-        setQuantity(0)
+        setQuantity(1)
     },[])
 
     return (
