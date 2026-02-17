@@ -1,12 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Eye, EyeOff } from "lucide-react";
-import "../shared/styles/Login.scss";
+import "./Login.scss";
 import { loginValidation } from "../../schema/LoginValidation";
 import { useFormik } from "formik";
 import { useMutation } from "@tanstack/react-query";
 import { loginUser } from "../../services/authService";
-import shopIcon from "../assets/shopIcon.svg";
 
 function Login() {
   const navigate = useNavigate();
@@ -39,7 +38,7 @@ function Login() {
       <div className="login-right">
         <div className="login-card">
           <div className="login-header">
-            <img src={shopIcon} alt="GoShop" />
+            <img src="/shopIcon.svg" alt="GoShop" />
             <h2>GoShop</h2>
           </div>
 
@@ -68,7 +67,9 @@ function Login() {
                 onChange={formik.handleChange}
                 onBlur={formik.handleBlur}
               />
-              <span onClick={() => setShowPassword(!showPassword)}>
+              <span 
+              data-testid="toggle-password"
+              onClick={() => setShowPassword(!showPassword)}>
                 {showPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </span>
             </div>

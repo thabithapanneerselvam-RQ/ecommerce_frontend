@@ -1,3 +1,4 @@
+import Header from "../pages/Header/Header";
 import { lazy } from "react";
 import { type RouteObject } from "react-router-dom";
 
@@ -7,5 +8,9 @@ export const publicRoutes: RouteObject[] = [
   {
     path: "/",
     element: <Login />
+  },
+  {
+    path: "/header",
+    element: <Header />
   }
 ];

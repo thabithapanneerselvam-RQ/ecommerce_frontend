@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "../shared/styles/Dashboard.scss";
+import "./Dashboard.scss";
 import FlashSale from "../../components/FlashSale";
 import ProductList from "../../components/ProductList";
 import { useAppSelector, useAppDispatch } from "../../shared/hooks/useStore";

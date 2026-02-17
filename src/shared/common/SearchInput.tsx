@@ -1,4 +1,4 @@
-import "/home/thabitha/Documents/Frontend_training/ecommerce_FE_project/ecommerce/src/shared/styles/Dashboard.scss";
+import "../../pages/Dashboard/Dashboard.scss";
 
 
 type SearchInputProps = {
