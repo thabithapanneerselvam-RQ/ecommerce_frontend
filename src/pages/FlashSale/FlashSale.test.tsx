@@ -63,4 +63,25 @@ describe("flashsale products display", () => {
         expect(screen.getByText("❤")).toBeInTheDocument();
     })
 
+    test("timer display", async() => {
+        jest.useFakeTimers();
+
+        mockedAxios.get.mockResolvedValueOnce({data: []});
+
+        render(
+            <FlashSale onLikeChange={jest.fn()} />
+        )
+
+        expect(screen.getByText("59")).toBeInTheDocument();
+
+        jest.advanceTimersByTime(1000);
+
+        await waitFor(() => {
+            expect(screen.getByText("58")).toBeInTheDocument();
+        })
+
+        jest.useRealTimers();
+
+    })
+
 })
