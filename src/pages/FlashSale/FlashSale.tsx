@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import "../shared/styles/FlashSale.scss";
-import "./ProductList";
-import { type FlashSaleProduct } from "../data/Products";
+import "./FlashSale.scss";
+import "../ProductList/ProductList";
+import { type FlashSaleProduct } from "../../data/Products";
 import axios from "axios";
-import Loader from "../shared/common/Loader";
+import Loader from "../../shared/common/Loader";
 
 interface FlashSaleProps {
   onLikeChange: (count: number) => void;
@@ -22,8 +22,6 @@ function FlashSale({ onLikeChange }: FlashSaleProps) {
 
   const [products, setProducts] = useState<FlashSaleProduct[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
-
-  // have fetch products somewhere and import it here 
 
   useEffect(() => { 
     const fetchProducts = async () => {

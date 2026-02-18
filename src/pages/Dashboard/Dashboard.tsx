@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Dashboard.scss";
-import FlashSale from "../../components/FlashSale";
-import ProductList from "../../components/ProductList";
+import FlashSale from "../FlashSale/FlashSale";
+import ProductList from "../ProductList/ProductList";
 import { useAppSelector, useAppDispatch } from "../../shared/hooks/useStore";
 import { setSearch } from "../../app/slice";
 import useDebounce from "../../shared/hooks/useDebounce";

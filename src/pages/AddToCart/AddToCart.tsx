@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { CartContext} from "../../context/CartContext";
 import { ShoppingCartOutlined } from "@ant-design/icons";
 import { Modal } from "antd";
@@ -20,7 +20,7 @@ function AddToCart() {
             </h2>;
     }
 
-    const incrementQuantity = () =>{
+    const incrementQuantity = () => {
         setQuantity(prevQuantity => prevQuantity + 1);
     }
 
@@ -36,10 +36,6 @@ function AddToCart() {
             content: "Your order is confirmed and shipment has started 🚚",
         });
     }
-
-    useEffect(()=>{
-        setQuantity(1)
-    },[])
 
     return (
         <div className="add-to-cart-container">

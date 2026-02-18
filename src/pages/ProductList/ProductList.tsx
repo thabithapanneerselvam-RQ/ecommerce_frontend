@@ -1,17 +1,17 @@
 import { useState, useMemo, useEffect, useContext} from "react";
 import { ChevronDown, ChevronUp } from "lucide-react";
-import "../shared/styles/ProductList.scss";
-import { colors, products } from "../data/Products";
-import { ITEMS_PER_PAGE } from "../shared/constants/Products";
-import Card from "../shared/common/Card";
-import { CartContext } from "../context/CartContext";
+import "./ProductList.scss";
+import { colors, products } from "../../data/Products";
+import { ITEMS_PER_PAGE } from "../../shared/constants/Products";
+import Card from "../../shared/common/Card";
+import { CartContext } from "../../context/CartContext";
 
 interface ProductListProps {
   searchQuery: string;
   onCartChange: (count: number) => void;
 }
 
-function ProductList({ searchQuery, onCartChange }: ProductListProps) {  //use arrow function
+function ProductList({ searchQuery, onCartChange }: ProductListProps) {  
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 500000]);
   const [selectedColors, setSelectedColors] = useState<string[]>([]);
   const [showSortDropdown, setShowSortDropdown] = useState<boolean>(false);
