@@ -71,7 +71,7 @@ describe("flashsale products display", () => {
         render(
             <FlashSale onLikeChange={jest.fn()} />
         )
-
+        
         expect(screen.getByText("59")).toBeInTheDocument();
 
         jest.advanceTimersByTime(1000);
