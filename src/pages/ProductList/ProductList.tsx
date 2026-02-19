@@ -24,7 +24,7 @@ function ProductList({ searchQuery, onCartChange }: ProductListProps) {
 
   const context = useContext(CartContext);
   if(!context){
-    throw new Error("product list should be inside context") //remove this line
+    throw new Error("product list should be inside context")
   }
   const { addToCart, removeFromCart, cartItems } = context;
 
@@ -354,3 +354,58 @@ function ProductList({ searchQuery, onCartChange }: ProductListProps) {
 }
 
 export default ProductList;
+
+
+// function ProductList({ searchQuery, onCartChange }: ProductListProps) {
+//   const [priceRange, setPriceRange] = useState<[number, number]>([0, 500000]);
+//   const [selectedColors, setSelectedColors] = useState<string[]>([]);
+//   const [sortBy, setSortBy] = useState("Popular");
+//   const [currentPage, setCurrentPage] = useState(1);
+
+//   const { addToCart, removeFromCart, cartItems } =
+//     useContext(CartContext)!;
+
+//   const filteredProducts = useFilteredProducts(
+//     searchQuery,
+//     priceRange,
+//     selectedColors,
+//     sortBy
+//   );
+
+//   const handleCartClick = (product: any) => {
+//     const exists = cartItems.some((item) => item.id === product.id);
+
+//     exists
+//       ? removeFromCart(product.id)
+//       : addToCart(product);
+
+//     onCartChange(
+//       exists ? cartItems.length - 1 : cartItems.length + 1
+//     );
+//   };
+
+//   return (
+//     <Card title="Today's For You!!!">
+//       <FilterSidebar
+//         priceRange={priceRange}
+//         setPriceRange={setPriceRange}
+//         selectedColors={selectedColors}
+//         setSelectedColors={setSelectedColors}
+//       />
+
+//       <ProductGrid
+//         products={filteredProducts}
+//         onCartClick={handleCartClick}
+//         cartItems={cartItems}
+//       />
+
+//       <Pagination
+//         currentPage={currentPage}
+//         totalPages={5}
+//         setCurrentPage={setCurrentPage}
+//       />
+//     </Card>
+//   );
+// }
+
+// export default ProductList;
