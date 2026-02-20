@@ -8,8 +8,8 @@
     "build": "tsc -b && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "test": "jest",
-    "test:watch": "jest --watch",
+    "test": "vitest",
+    "test:watch": "vitest --ui",
     "test:coverage": "jest --coverage"
   },
   "dependencies": {
@@ -25,6 +25,7 @@
     "react-redux": "^9.2.0",
     "react-router-dom": "^7.13.0",
     "recharts": "^3.7.0",
+    "vitest": "^4.0.18",
     "yup": "^1.7.1"
   },
   "devDependencies": {
