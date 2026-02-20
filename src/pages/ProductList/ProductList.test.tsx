@@ -23,7 +23,7 @@ const renderWithContext = (searchQuery = "", cartItems: any[] = []) =>
 describe("ProductList component", () => {
 
   beforeEach(() => {
-    vi.clearAllMocks(); // important in Vitest
+    vi.clearAllMocks();
   });
 
   test("display header", () => {
