@@ -10,7 +10,7 @@ import { useCartHandler } from "../../shared/hooks/useCartHandler";
 import { Drawer, Radio, Button, Breadcrumb } from "antd";
 import { Link } from "react-router-dom";
 import { useProducts } from "../../shared/hooks/useProducts";
-import { products as initialProducts } from "../../data/Products";
+// import { products as initialProducts } from "../../data/Products";
 
 interface Props {
   searchQuery: string;
@@ -27,7 +27,7 @@ function ProductList({ searchQuery, onCartChange }: Props) {
   const [tempSort, setTempSort] = useState(sortBy);
 
   const { handleCartClick, cartItems } = useCartHandler(onCartChange);
-  const { products, edit, remove } = useProducts(initialProducts);
+  const { products, edit, remove } = useProducts();
 
   const filteredProducts = useFilteredProducts(
     products,

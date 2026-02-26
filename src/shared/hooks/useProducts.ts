@@ -1,15 +1,26 @@
-import { useState } from "react";
-import { deleteProduct, updateProduct } from "../../api/product.api";
+import { useState, useEffect } from "react";
+import { getProduct, deleteProduct, updateProduct } from "../../api/product.api";
 import type { Product } from "../../models/Product.model";
 
-export const useProducts = (initial: Product[]) => {
-  const [products, setProducts] = useState<Product[]>(initial);
+export const useProducts = () => {
+  const [products, setProducts] = useState<Product[]>([]);
+
+  useEffect(() => {
+    const fetchProducts = async () => {
+      const data = await getProduct();
+      setProducts(data);
+    };
+
+    fetchProducts();
+  }, []);
 
   const edit = async (id: number, data: Partial<Product>) => {
     const updated = await updateProduct(id, data);
 
     setProducts(prev =>
-      prev.map(p => (p.id === id ? { ...p, ...updated} : p))
+      prev.map(p =>
+        p.id === id ? { ...p, ...updated } : p
+      )
     );
   };
 
