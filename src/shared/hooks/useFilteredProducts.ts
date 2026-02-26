@@ -1,7 +1,8 @@
 import { useMemo } from "react";
-import { products } from "../../data/Products";
+import type { Product } from "../../models/Product.model";
 
 export const useFilteredProducts = (
+  products: Product[],
   searchQuery: string,
   priceRange: [number, number],
   selectedColors: string[],
@@ -34,5 +35,5 @@ export const useFilteredProducts = (
     }
 
     return result;
-  }, [searchQuery, priceRange, selectedColors, sortBy]);
+  }, [products, searchQuery, priceRange, selectedColors, sortBy]);
 };

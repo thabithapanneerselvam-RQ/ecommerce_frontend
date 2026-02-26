@@ -1,87 +1,143 @@
-import { screen, render, waitFor, fireEvent } from "@testing-library/react"
-import FlashSale from "./FlashSale"
-import axios from "axios";
+// import { screen, render, waitFor, fireEvent } from "@testing-library/react"
+// import FlashSale from "./FlashSale"
+// import axios from "axios";
 
-jest.mock("axios");
-const mockedAxios = axios as jest.Mocked<typeof axios>;
+// jest.mock("axios");
+// const mockedAxios = axios as jest.Mocked<typeof axios>;
+
+// describe("flashsale products display", () => {
+//     test("loading while fetching products", () => {
+//         mockedAxios.get.mockResolvedValueOnce({data: []});
+//         render(
+//             <FlashSale onLikeChange={jest.fn()}/>
+//         )
+
+//         expect(screen.getByText(/loading/i)).toBeInTheDocument();
+//     })
+
+//     test("successfully rendering products", async() => {
+//         mockedAxios.get.mockResolvedValueOnce({
+//             data: [
+//                 {
+//                     id: 1,
+//                     title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+//                     price: 109950.00,
+//                     image: "test.jpg",
+//                 }
+//             ]
+//         })
+
+//         render(
+//             <FlashSale onLikeChange={jest.fn()}/>
+//         )
+
+//         await waitFor(() => {
+//             expect(screen.getByText(/Foldsack/i)).toBeInTheDocument();
+//         })
+
+//         expect(screen.getByText(/109950000.00/i)).toBeInTheDocument();
+//     })
+
+//     test("toggle like button and updates count", async() => {
+//         const mockLikeCountChange = jest.fn();
+
+//         mockedAxios.get.mockResolvedValueOnce({
+//             data: [
+//                 {
+//                     id: 1,
+//                     title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
+//                     price: 109950.00,
+//                     image: "test.jpg",
+//                 }
+//             ]
+//         })
+
+//         render(
+//             <FlashSale onLikeChange={mockLikeCountChange} />
+//         )
+
+//         const heartButton = await screen.findByText("♡");
+
+//         fireEvent.click(heartButton);
+//         expect(mockLikeCountChange).toHaveBeenCalledWith(1);
+//         expect(screen.getByText("❤")).toBeInTheDocument();
+//     })
+
+//     test("timer display", async() => {
+//         jest.useFakeTimers();
+
+//         mockedAxios.get.mockResolvedValueOnce({data: []});
+
+//         render(
+//             <FlashSale onLikeChange={jest.fn()} />
+//         )
+        
+//         expect(screen.getByText("59")).toBeInTheDocument();
+
+//         jest.advanceTimersByTime(1000);
+
+//         await waitFor(() => {
+//             expect(screen.getByText("58")).toBeInTheDocument();
+//         })
+
+//         jest.useRealTimers();
+
+//     })
+
+// })
+
+
+import { screen, render, waitFor, fireEvent } from "@testing-library/react";
+import FlashSale from "./FlashSale";
 
 describe("flashsale products display", () => {
-    test("loading while fetching products", () => {
-        mockedAxios.get.mockResolvedValueOnce({data: []});
-        render(
-            <FlashSale onLikeChange={jest.fn()}/>
-        )
+  test("loading while fetching products", () => {
+    render(
+    <FlashSale onLikeChange={jest.fn()} />
+  );
+    expect(screen.getByText(/loading/i)).toBeInTheDocument();
+  });
 
-        expect(screen.getByText(/loading/i)).toBeInTheDocument();
-    })
+  test("successfully rendering products", async () => {
+    render(
+    <FlashSale onLikeChange={jest.fn()} />
+  );
 
-    test("successfully rendering products", async() => {
-        mockedAxios.get.mockResolvedValueOnce({
-            data: [
-                {
-                    id: 1,
-                    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-                    price: 109950.00,
-                    image: "test.jpg",
-                }
-            ]
-        })
+    expect(await screen.findByText(/Foldsack/i)).toBeInTheDocument();
 
-        render(
-            <FlashSale onLikeChange={jest.fn()}/>
-        )
+    expect(screen.getByText(/131940/i)).toBeInTheDocument();
+  });
 
-        await waitFor(() => {
-            expect(screen.getByText(/Foldsack/i)).toBeInTheDocument();
-        })
+  test("toggle like button and updates count", async () => {
+    const mockLikeCountChange = jest.fn();
 
-        expect(screen.getByText(/131940.00/i)).toBeInTheDocument();
-    })
+    render(
+    <FlashSale onLikeChange={mockLikeCountChange} />
+  );
 
-    test("toggle like button and updates count", async() => {
-        const mockLikeCountChange = jest.fn();
+    const heartButton = await screen.findAllByText("♡");
 
-        mockedAxios.get.mockResolvedValueOnce({
-            data: [
-                {
-                    id: 1,
-                    title: "Fjallraven - Foldsack No. 1 Backpack, Fits 15 Laptops",
-                    price: 109950.00,
-                    image: "test.jpg",
-                }
-            ]
-        })
+    fireEvent.click(heartButton[0]);
 
-        render(
-            <FlashSale onLikeChange={mockLikeCountChange} />
-        )
+    expect(mockLikeCountChange).toHaveBeenCalledWith(1);
+    expect(screen.getByText("❤")).toBeInTheDocument();
+  });
 
-        const heartButton = await screen.findByText("♡");
+  test("timer display", async () => {
+    jest.useFakeTimers();
 
-        fireEvent.click(heartButton);
-        expect(mockLikeCountChange).toHaveBeenCalledWith(1);
-        expect(screen.getByText("❤")).toBeInTheDocument();
-    })
+    render(
+    <FlashSale onLikeChange={jest.fn()} />
+  );
 
-    test("timer display", async() => {
-        jest.useFakeTimers();
+    expect(screen.getByText("59")).toBeInTheDocument();
 
-        mockedAxios.get.mockResolvedValueOnce({data: []});
+    jest.advanceTimersByTime(1000);
 
-        render(
-            <FlashSale onLikeChange={jest.fn()} />
-        )
-        
-        expect(screen.getByText("59")).toBeInTheDocument();
+    await waitFor(() => {
+      expect(screen.getByText("58")).toBeInTheDocument();
+    });
 
-        jest.advanceTimersByTime(1000);
-
-        await waitFor(() => {
-            expect(screen.getByText("58")).toBeInTheDocument();
-        })
-
-        jest.useRealTimers();
-
-    })
-
-})
+    jest.useRealTimers();
+  });
+}); 

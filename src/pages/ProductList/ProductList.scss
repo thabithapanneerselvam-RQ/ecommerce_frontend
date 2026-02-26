@@ -197,7 +197,7 @@
   margin-bottom: 25px;
 }
 
-.sort-dropdown {
+.sort-options {
   position: relative;
 }
 
@@ -222,16 +222,17 @@
   color: #333;
 }
 
+
 .sort-options {
-  position: absolute;
-  top: calc(100% + 5px);
-  right: 0;
-  background: white;
-  border: 1px solid $border-color;
-  border-radius: 8px;
-  box-shadow: $box-shadow-md;
-  min-width: 200px;
-  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.sort-btn {
+  display: flex;
+  gap: 10px;
+  border: none;
 }
 
 .sort-options div {
@@ -239,6 +240,7 @@
   cursor: pointer;
   font-size: $font-size-base;
   color: $black;
+  border-radius: 6px;
   transition: background $transition-fast;
 }
 

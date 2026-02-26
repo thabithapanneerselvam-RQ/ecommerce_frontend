@@ -1,10 +1,15 @@
+import type { Product } from "../../models/Product.model";
+
 interface Props {
   product: any;
   isInCart: boolean;
   onCartClick: (product: any) => void;
+  onEdit: (id: number, data: Partial<Product>) => void;
+  onDelete: (id: number) => void;
 }
 
-function ProductCard({ product, isInCart, onCartClick }: Props) {
+
+function ProductCard({ product, isInCart, onCartClick, onEdit, onDelete }: Props) {
   return (
     <div className="product-list-card">
       {product.isNewArrival && <div className="new-arrival-badge">✓ New Arrival</div>}
@@ -25,6 +30,21 @@ function ProductCard({ product, isInCart, onCartClick }: Props) {
           >
             {isInCart ? "Remove from Cart" : "Add to Cart"}
           </button>
+
+          <button
+            onClick={() =>
+              onEdit(product.id, { price: product.price + 20 })
+            }
+          >
+            Edit
+          </button>
+
+          <button
+            onClick={() => onDelete(product.id)}
+          >
+            Remove
+          </button>
+
         </div>
       </div>
     </div>

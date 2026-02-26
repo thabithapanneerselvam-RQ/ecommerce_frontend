@@ -3,13 +3,15 @@ import { describe, test, expect, vi, beforeEach } from "vitest";
 import ProductList from "./ProductList";
 import { CartContext } from "../../context/CartContext";
 import { products } from "../../data/Products";
+import { MemoryRouter } from "react-router-dom";
 
 const mockAddToCart = vi.fn();
 const mockRemoveFromCart = vi.fn();
 
 const renderWithContext = (searchQuery = "", cartItems: any[] = []) =>
   render(
-    <CartContext.Provider
+    <MemoryRouter>
+      <CartContext.Provider
       value={{
         cartItems,
         addToCart: mockAddToCart,
@@ -18,6 +20,8 @@ const renderWithContext = (searchQuery = "", cartItems: any[] = []) =>
     >
       <ProductList searchQuery={searchQuery} onCartChange={vi.fn()} />
     </CartContext.Provider>
+    </MemoryRouter>
+    
   );
 
 describe("ProductList component", () => {
@@ -59,7 +63,7 @@ describe("ProductList component", () => {
     renderWithContext("", [products[0]]);
 
     const buttons = screen.getAllByRole("button", {
-      name: /add to cart/i,
+      name: /remove/i,
     });
 
     fireEvent.click(buttons[0]);
